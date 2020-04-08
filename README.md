@@ -13,3 +13,5 @@ A small VueJS web application allows you to test the new URI type. Open a comman
 ```
 
 Note that Chrome will ask you for a confirmation to follow the custom scheme. In an Electron app, this confirmation window can most likely be suppressed by configuring the built-in browser.
+
+The current implementation of `PxlHandler.exe` shows a console window with messages. In a production situation you would suppress this window and let the application run invisibly.

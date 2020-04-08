@@ -57,6 +57,19 @@ namespace PxlHandler
                     commandKey.SetValue("", $"\"{applicationLocation}\" \"%1\"");
                 }
             }
+
+            try
+            {
+                using (RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\Policies\\Google\\Chrome"))
+                {
+                    Debug.Assert(key != null, nameof(key) + " != null");
+                    key.SetValue("ExternalProtocolDialogShowAlwaysOpenCheckbox", 1, RegistryValueKind.DWord);
+                }
+            }
+            catch
+            {
+                // pass
+            }
         }
 
         private static PxlResult FollowLink(string uriString)

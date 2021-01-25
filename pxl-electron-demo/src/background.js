@@ -3,7 +3,13 @@
 import { app, protocol, BrowserWindow } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
+import path from 'path'
+
 const isDevelopment = process.env.NODE_ENV !== 'production'
+
+global.__basedir = isDevelopment ? path.join(__static, '..') : path.join(path.dirname(__static), '..')
+
+const pxlHandlerPath = __basedir + "\\bin\\PxlHandler.exe"
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
@@ -60,6 +66,11 @@ app.on('ready', async () => {
       console.error('Vue Devtools failed to install:', e.toString())
     }
   }
+  
+  if (!app.isDefaultProtocolClient("pxl", pxlHandlerPath)) {
+    app.setAsDefaultProtocolClient("pxl", pxlHandlerPath)
+  }
+  
   createWindow()
 })
 

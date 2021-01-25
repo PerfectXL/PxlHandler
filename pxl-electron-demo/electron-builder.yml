@@ -3,3 +3,9 @@ extraFiles:
     to: "bin/"
     filter:
       - "**/*"
+      
+nsis:
+  allowToChangeInstallationDirectory: true
+  multiLanguageInstaller: false
+  oneClick: false
+  perMachine: false
